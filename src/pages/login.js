@@ -52,11 +52,12 @@ const styles = {
             password:this.state.password
         }
         axios.post('http://127.0.0.1:9000/user/login',userData).then((res)=>{
-            console.log(res.data);
+            console.log(res.data );
+            localStorage.setItem("user_auth",res.data.data.token);
             this.setState({
                 loading: false
             });
-            this.props.history.push('/');
+           this.props.history.push('/');
         }).catch((e)=>{
             this.setState({
                 err_response: e.response.data.message,

@@ -18,13 +18,14 @@ class Navbar extends Component {
         const { classes} = this.props;
         return (
             <AppBar>
-                <Toolbar className="nav-container">
-                    <Button color="inherit" component={Link} to="/login">Login</Button>
-                    <Button color="inherit" component={Link} to="/">HomePage</Button>
-                    <Button color="inherit" component={Link} to="signup">Signup</Button>
-                </Toolbar>
-            </AppBar>
+            <Toolbar className="nav-container">
+                <Button color="inherit" component={Link} to="/login">Login</Button>
+                <Button color="inherit" component={Link} to="/">HomePage</Button>
+                <Button color="inherit" component={Link} to="/signup">Signup</Button>
+            </Toolbar>
+        </AppBar>
         )
+        
     }
 }
 export default withStyles(styles)(Navbar)
