@@ -12,7 +12,8 @@ import AppIcon from './../images/login.png';
 
 const styles = {
     form:{
-        textAlign:'center'
+        textAlign:'center',
+        backgroundColor:''
     },
     image:{
         margin: '20px auto 20px auto'
@@ -74,9 +75,16 @@ const styles = {
         });
     };
 
+    toSignup = (event)=>{
+        this.props.history.push('/signup');
+    }
+
     render() {
         const { classes } = this.props;
         const {errors, err_response,loading} = this.state;
+        if(localStorage.getItem('user_auth')){
+            this.props.history.push('/');
+        }
         return (
             <Grid container className={classes.form}>
                 <Grid item sm/>
@@ -87,7 +95,7 @@ const styles = {
             </Typography>
             <form noValidate onSubmit={this.handleSubmit}>
                 <TextField id="email" name="email" label="Email" className={classes.textField} value={this.state.email} helperText={errors.email} error={errors.email? true:false} onChange={this.handleChange} fullWidth />
-                <TextField id="password" name="password" label="password" className={classes.textField} value={this.state.password} helperText={errors.password} error={errors.password? true:false} onChange={this.handleChange} fullWidth />
+                <TextField id="password" name="password" label="Password" className={classes.textField} value={this.state.password} helperText={errors.password} error={errors.password? true:false} onChange={this.handleChange} fullWidth />
                 {
                     err_response && (
                         <Typography variant="body2" className={classes.customError}>
@@ -95,7 +103,8 @@ const styles = {
                         </Typography>
                     )
                 }
-                <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
+                <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button> <br/>
+                <Button onClick={this.toSignup} variant="contained" color="secondary" className={classes.button}>Signup</Button>
             </form>
                     </Grid>
                 <Grid item sm/>

@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <MuiThemeProvider theme={theme}>
       <Router>
-      <Navbar />
+      {/* <Navbar /> */}
         <div className="container">
         <Switch>
           <Route exact path="/" component={home} />
