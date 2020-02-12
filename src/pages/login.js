@@ -7,13 +7,15 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 
 import AppIcon from './../images/login.png';
 
 const styles = {
     form:{
         textAlign:'center',
-        backgroundColor:''
+        padding:'20px'
     },
     image:{
         margin: '20px auto 20px auto'
@@ -26,10 +28,19 @@ const styles = {
     },
     button:{
         marginTop: 20
+    }, card:{
+        display: 'flex',
+        margin: 5,
+        // backgroundColor:'#6896de'
     },
     customError:{
         color: 'red',
         fontSize: '0.8rem'
+    },
+    content:{
+        backgroundColor:'rgb(213, 224, 232)',
+        padding: 30,
+        
     }
 };
 
@@ -45,6 +56,9 @@ const styles = {
              errors:{},
              err_response:''
          }
+         if(localStorage.getItem('user_auth')){
+            this.props.history.push('/');
+        }
      }
      handleSubmit = (event)=>{
         event.preventDefault();
@@ -82,20 +96,20 @@ const styles = {
     render() {
         const { classes } = this.props;
         const {errors, err_response,loading} = this.state;
-        if(localStorage.getItem('user_auth')){
-            this.props.history.push('/');
-        }
+      
         return (
             <Grid container className={classes.form}>
                 <Grid item sm/>
-                <Grid item sm>
+                <Grid item sm >
+                <Card variant="outlined" className={classes.card}>
+                <CardContent className={classes.content}>
            <img src={AppIcon} alt="loginIcon" className={classes.image}/>
             <Typography variant="h2" className="classes.pageTitle">
             Login
             </Typography>
             <form noValidate onSubmit={this.handleSubmit}>
                 <TextField id="email" name="email" label="Email" className={classes.textField} value={this.state.email} helperText={errors.email} error={errors.email? true:false} onChange={this.handleChange} fullWidth />
-                <TextField id="password" name="password" label="Password" className={classes.textField} value={this.state.password} helperText={errors.password} error={errors.password? true:false} onChange={this.handleChange} fullWidth />
+                <TextField id="password" type="password" name="password" label="Password" className={classes.textField} value={this.state.password} helperText={errors.password} error={errors.password? true:false} onChange={this.handleChange} fullWidth />
                 {
                     err_response && (
                         <Typography variant="body2" className={classes.customError}>
@@ -106,6 +120,8 @@ const styles = {
                 <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button> <br/>
                 <Button onClick={this.toSignup} variant="contained" color="secondary" className={classes.button}>Signup</Button>
             </form>
+            </CardContent>
+            </Card>
                     </Grid>
                 <Grid item sm/>
             </Grid>

@@ -13,18 +13,16 @@ import axios from 'axios'
 
 const styles={
     card:{
+        maxWidth: 345,
         display: 'flex',
-        margin: 5,
-        // backgroundColor:'#6896de'
+        //backgroundColor:'#6896de'
     },
     content:{
-        padding: 30,
-        
+        padding: 30
     }
 }
 
 class ProfileView extends Component {
-  
     logout = (event)=>{
         event.preventDefault();
         axios.delete('http://127.0.0.1:9000/user/logout',{headers:{
@@ -37,6 +35,12 @@ class ProfileView extends Component {
             }
         });
     }
+
+    toAddDevice = (event)=>{
+        event.preventDefault();
+        this.props.history.push('/adddevice');
+    }
+
   render() {
     const { classes, username, email, role} = this.props;
     return (

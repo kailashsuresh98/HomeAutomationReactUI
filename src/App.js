@@ -6,17 +6,12 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // import logo from './logo.svg';
 import './App.css';
 
-
-
-//Components
-import Navbar from './components/Navbar';
-
-
  //Pages 
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
-
+import adddevice from './pages/adddevice'
+import devicedetails from './pages/devicedetails'
 const theme = createMuiTheme({
 
   typography: {
@@ -35,6 +30,8 @@ function App() {
           <Route exact path="/" component={home} />
           <Route exact path="/login" component={login} />
           <Route exact path="/signup" component={signup} />
+          <Route exact path="/adddevice" component={adddevice}/>
+          <Route exact path="/devicedetail" component={devicedetails}/>
         </Switch>
         </div>
       </Router>
